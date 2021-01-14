@@ -1,15 +1,15 @@
 Ubuntu Desktop VM
 =================
 
-This is a minimal VM configuration for Ubuntu LTS Desktop.
+This is a minimal VM configuration for Ubuntu Desktop.
 
 Installation
 ------------
 
-- Download the `ovf` file from the releases
+- Download the `ova` VM appliance file from the releases
 - Run it in your VM host of choice
 
-There no password required to login, but the default password is "password".
+There no password required to login, but the default password for `sudo` access is "password".
 
 Details
 -------
@@ -37,4 +37,4 @@ The following process was completed after installation to minimze the size of th
 - zero free space
 - Compress image after poweroff
 
-The complete process can be executed by running the include `clean` script on the guest followed by `vboxmanage modifymedium --compact disk.vdi` on the host.
+The complete process can be executed by running the included `clean` script on the guest followed by `vboxmanage modifymedium --compact disk.vdi` on the host.
