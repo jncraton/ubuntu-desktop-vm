@@ -1,25 +1,27 @@
 #!/bin/bash
 
-# Remove extra packages
+# Update the system
+sudo apt -y update
 
+
+# Remove extra packages
 sudo apt -y --purge remove alsa alsa-utils ulseaudio snapd wireless-tools wpasupplicant network-manager rfkill whoopsie apport apparmor update-manager update-notifier unattended-upgrades bluez wamerican wbritish speech-dispatcher gnome-accessibility-themes gnome-bluetooth gnome-calculator gnome-characters gnome-disk-utility gnome-font-viewer gnome-getting-started-docs gnome-initial-setup gnome-logs gnome-online-accounts gnome-themes-extra gnome-themes-extra-data ubuntu-advantage-tools ubuntu-docs ubuntu-report yelp apt-utils enchant-2
 
 # Remove dependencies
-
 sudo apt -y --purge autoremove
 
-# Update the system
-
-sudo apt -y update
+# Upgrade the system
 sudo apt -y upgrade
 
 # Remove temp files
-
 sudo apt clean
 rm -rf /home/user/*
 rm -rf /home/user/.*
 sudo rm -rf /var/log/*
 sudo rm -rf /var/cache/*
-    
+
+# Zero free space    
 dd bs=4M if=/dev/zero of=/var/tmp/empty; rm /var/tmp/empty
+
+# Shut down
 sudo shutdown now
