@@ -1,7 +1,7 @@
-Ubuntu Desktop VM
-=================
+Ubuntu Desktop VM Appliance
+===========================
 
-This is a minimal VM configuration for Ubuntu Desktop.
+This is a minimal VM configuration for Ubuntu Desktop with Git, Python 3, C/C++ build tools, and the [Micro](https://github.com/zyedidia/micro) text editor preinstalled.
 
 Installation
 ------------
