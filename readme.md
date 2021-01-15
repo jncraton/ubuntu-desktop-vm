@@ -3,6 +3,8 @@ Ubuntu Desktop VM Appliance
 
 This is a minimal VM configuration for Ubuntu Desktop with Git, Python 3, C/C++ build tools, and the [Micro](https://github.com/zyedidia/micro) text editor preinstalled.
 
+![Ubuntu Desktop](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Ubuntu-20.04.jpg/800px-Ubuntu-20.04.jpg_
+
 Installation
 ------------
 
