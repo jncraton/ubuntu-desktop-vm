@@ -6,7 +6,7 @@ This is a minimal VM configuration for Ubuntu Desktop.
 Installation
 ------------
 
-- Download the `ova` VM appliance file from the releases
+- Download the `ova` [VM appliance](https://github.com/jncraton/ubuntu-desktop-vm/releases/download/v1.1/ubuntu-desktop.ova) file from the [releases](https://github.com/jncraton/ubuntu-desktop-vm/releases/latest)
 - Run it in your VM host of choice
 
 There no password required to login, but the default password for `sudo` access is "password".
