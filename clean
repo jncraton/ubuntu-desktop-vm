@@ -3,6 +3,8 @@
 # Update the system
 sudo apt -y update
 
+# Install new packages
+sudo apt install -y python3-pip git micro build-essential
 
 # Remove extra packages
 sudo apt -y --purge remove alsa alsa-utils pulseaudio snapd wireless-tools wpasupplicant network-manager rfkill whoopsie apport apparmor update-manager update-notifier unattended-upgrades bluez wamerican wbritish speech-dispatcher gnome-accessibility-themes gnome-bluetooth gnome-calculator gnome-characters gnome-disk-utility gnome-font-viewer gnome-getting-started-docs gnome-initial-setup gnome-logs gnome-online-accounts gnome-themes-extra gnome-themes-extra-data ubuntu-advantage-tools ubuntu-docs ubuntu-report yelp apt-utils enchant-2
