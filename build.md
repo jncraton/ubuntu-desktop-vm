@@ -1,5 +1,7 @@
-Setup
+Build
 =====
+
+These instructions describe the process that is used to create this appliance from a fresh Ubuntu install.
 
 This image is a fresh install of Ubuntu Desktop 20.04. It is configured with the following settings:
 
