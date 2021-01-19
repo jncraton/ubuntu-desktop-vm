@@ -25,6 +25,7 @@ rm -rf /home/user/*
 rm -rf /home/user/.*
 sudo rm -rf /var/log/*
 sudo rm -rf /var/cache/*
+sudo rm -rf /var/lib/apt/lists
 
 # Remove old boot images
 sudo rm /boot/*.old
