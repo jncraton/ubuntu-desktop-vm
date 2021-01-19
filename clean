@@ -29,10 +29,6 @@ sudo rm -rf /var/lib/apt/lists
 
 # Remove old boot images
 sudo rm /boot/*.old
-sudo rm /boot/*5.4*
-
-# Remove old headers
-sudo rm -rf /usr/src/*5.4*
 
 # Zero free space    
 dd bs=4M if=/dev/zero of=/var/tmp/empty; rm /var/tmp/empty
