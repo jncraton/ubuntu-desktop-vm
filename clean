@@ -7,7 +7,7 @@ sudo apt -y update
 sudo apt install -y python3-pip git micro build-essential
 
 # Remove extra packages
-sudo apt -y --purge remove alsa alsa-utils pulseaudio snapd whoopsie apport apparmor update-manager update-notifier unattended-upgrades bluez enchant-2 wamerican wbritish speech-dispatcher brltty gnome-accessibility-themes gnome-bluetooth gnome-calculator gnome-characters gnome-disk-utility gnome-font-viewer gnome-getting-started-docs gnome-initial-setup gnome-logs gnome-online-accounts gnome-themes-extra gnome-themes-extra-data ubuntu-advantage-tools ubuntu-docs ubuntu-report yaru-theme-sound yelp apt-utils 
+sudo apt -y --purge remove alsa alsa-utils pulseaudio snapd whoopsie apport apparmor update-manager update-notifier unattended-upgrades bluez enchant-2 wamerican wbritish speech-dispatcher brltty gnome-accessibility-themes gnome-bluetooth gnome-calculator gnome-characters gnome-disk-utility gnome-font-viewer gnome-getting-started-docs gnome-initial-setup gnome-logs gnome-online-accounts gnome-themes-extra gnome-themes-extra-data ubuntu-advantage-tools ubuntu-docs ubuntu-report yaru-theme-sound yaru-theme-icon yelp apt-utils "^fonts-noto.*"
 
 # Remove HWE kernel
 sudo apt -y --purge remove linux-image-generic-hwe-20.04
