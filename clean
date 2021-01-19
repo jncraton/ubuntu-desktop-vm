@@ -22,6 +22,8 @@ sudo apt -y upgrade
 sudo apt clean
 rm -rf /home/user/*
 rm -rf /home/user/.*
+sudo rm -rf /root/*
+sudo rm -rf /root/.*
 sudo rm -rf /tmp/*
 sudo rm -rf /var/log/*
 sudo rm -rf /var/cache/*
