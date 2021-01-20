@@ -41,7 +41,7 @@ sudo rm -rf /var/lib/apt/lists
 sudo rm -f /boot/*.old
 
 # Zero free space    
-dd bs=4M if=/dev/zero of=/var/tmp/empty; rm /var/tmp/empty
+dd bs=4M if=/dev/zero of=/var/tmp/empty || rm /var/tmp/empty
 
 # Adjust Gnome settings
 # Disable screen blanking
