@@ -35,5 +35,13 @@ sudo rm /boot/*.old
 # Zero free space    
 dd bs=4M if=/dev/zero of=/var/tmp/empty; rm /var/tmp/empty
 
+# Adjust Gnome settings
+# Disable screen blanking
+gsettings set org.gnome.desktop.session idle-delay 0
+# Disable screen locking after suspend
+gsettings set org.gnome.desktop.lockdown disable-lock-screen true
+# Disable screen locking from screensaver
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+
 # Shut down
 sudo shutdown now
