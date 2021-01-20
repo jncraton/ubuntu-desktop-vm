@@ -45,12 +45,14 @@ file \
 "^fonts-samyak.*" \
 "^fonts-smc.*" \
 "^fonts-tlwg-.*" \
+fonts-freefont-ttf \
 fonts-guru \
 fonts-guru-extra \
 fonts-kacst \
 fonts-kacst-one \
 fonts-khmeros-core \
 fonts-lao \
+fonts-liberation2 \
 fonts-lklug-sinhala \
 fonts-lohit-guru \
 fonts-nakula \
@@ -67,12 +69,14 @@ fonts-takao-pgothic \
 fonts-taml \
 fonts-telu \
 fonts-tibetan-machine \
+fonts-urw-base35 \
 foomatic-db-compressed-ppds \
 fprintd \
 fuse \
 gamemode \
 gdb \
 gedit \
+genisoimage \
 ghostscript \
 gnome-accessibility-themes \
 gnome-bluetooth \
@@ -97,6 +101,7 @@ gstreamer1.0-alsa \
 gstreamer1.0-gl \
 gstreamer1.0-pulseaudio \
 gstreamer1.0-tools \
+gstreamer1.0-plugins-good \
 hdparm \
 humanity-icon-theme \
 "^ibus.*" \
@@ -105,6 +110,7 @@ iptables \
 kerneloops \
 language-selector-common \
 language-selector-gnome \
+libllvm9 \
 linux-sound-base \
 locales \
 logrotate \
@@ -166,6 +172,7 @@ whoopsie \
 xcursor-themes \
 xdg-user-dirs \
 xdg-utils \
+xfonts-encodings \
 xserver-xephyr \
 xserver-xorg-input-wacom \
 xserver-xorg-legacy \
