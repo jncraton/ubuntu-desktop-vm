@@ -47,7 +47,7 @@ sudo rm -rf /usr/share/backgrounds/*
 # Remove old boot images
 sudo rm -f /boot/*.old
 
-# Zero free space    
+# Zero free space
 dd bs=4M if=/dev/zero of=/var/tmp/empty || rm /var/tmp/empty
 
 # Adjust Gnome settings
