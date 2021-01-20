@@ -41,6 +41,9 @@ sudo rm -rf /var/backups/*
 sudo rm -rf /var/cache/*
 sudo rm -rf /var/lib/apt/lists
 
+# Remove backgrounds
+sudo rm -rf /usr/share/backgrounds/*
+
 # Remove old boot images
 sudo rm -f /boot/*.old
 
@@ -54,6 +57,8 @@ gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.desktop.lockdown disable-lock-screen true
 # Disable screen locking from screensaver
 gsettings set org.gnome.desktop.screensaver lock-enabled false
+# Use black background color
+gsettings set org.gnome.desktop.background primary-color '#000000'
 
 # Shut down
 sudo shutdown now
