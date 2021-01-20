@@ -26,6 +26,7 @@ sudo rm -rf /root/*
 sudo rm -rf /root/.*
 sudo rm -rf /tmp/*
 sudo rm -rf /var/log/*
+sudo rm -rf /var/backups/*
 sudo rm -rf /var/cache/*
 sudo rm -rf /var/lib/apt/lists
 
