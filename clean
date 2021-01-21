@@ -114,6 +114,7 @@ language-selector-common \
 language-selector-gnome \
 libllvm9 \
 libgnome-menu-3-0 \
+libproxy1-plugin-networkmanager
 linux-sound-base \
 locales \
 logrotate \
@@ -125,8 +126,11 @@ modemmanager \
 mousetweaks \
 mtr-tiny \
 nautilus-sendto \
+netplan.io \
+networkd-dispatcher \
 network-manager-config-connectivity-ubuntu \
 network-manager-gnome \
+network-manager \
 ntfs-3g \
 openprinting-ppds \
 openvpn \
@@ -188,6 +192,13 @@ yelp
 # For a very minimal install, uncomment the following
 # This will include only gnome-terminal
 # sudo apt -y --purge remove gnome-screenshot file-roller nautilus firefox
+
+# Add basic networking
+sudo apt -y install ifupdown
+# Use old standard names for interfaces (e.g eth0)
+sudo ln -s /dev/null /etc/systemd/network/99-default.link
+echo auto eth0 | sudo tee /etc/network/interfaces
+echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
 
 # Remove dependencies
 sudo apt -y --purge autoremove
