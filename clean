@@ -114,7 +114,7 @@ language-selector-common \
 language-selector-gnome \
 libllvm9 \
 libgnome-menu-3-0 \
-libproxy1-plugin-networkmanager
+libproxy1-plugin-networkmanager \
 linux-sound-base \
 locales \
 logrotate \
