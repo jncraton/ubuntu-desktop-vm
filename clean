@@ -128,7 +128,6 @@ mtr-tiny \
 nautilus-sendto \
 netbase \
 netplan.io \
-networkd-dispatcher \
 network-manager-config-connectivity-ubuntu \
 network-manager-gnome \
 network-manager \
@@ -198,7 +197,8 @@ yelp
 # Add basic networking
 sudo apt -y install ifupdown
 # Use old standard names for interfaces (e.g eth0)
-sudo ln -s /dev/null /etc/systemd/network/99-default.link
+echo 'GRUB_CMDLINE_LINUX=" net.ifnames=0 biosdevname=0"' | sudo tee -a /etc/default/grub
+sudo update-grub
 echo auto eth0 | sudo tee /etc/network/interfaces
 echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
 
