@@ -237,6 +237,8 @@ gsettings set org.gnome.desktop.lockdown disable-lock-screen true
 gsettings set org.gnome.desktop.screensaver lock-enabled false
 # Use black background color
 gsettings set org.gnome.desktop.background primary-color '#000000'
+# Disable animations
+gsettings set org.gnome.desktop.interface enable-animations false
 
 # Shut down
 sudo shutdown now
