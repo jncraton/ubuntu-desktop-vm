@@ -236,8 +236,6 @@ rm -rf /lib/module/*/kernel/fs/btrfs
 rm -rf /lib/module/*/kernel/fs/xfs
 rm -rf /lib/module/*/kernel/drivers/wireless
 rm -rf /lib/module/*/kernel/drivers/staging
-rm -rf /lib/module/*/kernel/drivers/gpu
-rm -rf /lib/module/*/kernel/drivers/media
 
 # Zero free space
 dd bs=4M if=/dev/zero of=/var/tmp/empty || rm /var/tmp/empty
