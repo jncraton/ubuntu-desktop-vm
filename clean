@@ -208,6 +208,10 @@ sudo apt -y --purge autoremove
 # Upgrade the system
 sudo apt -y upgrade
 
+# Remove swapfile (will be recreated on first boot)
+sudo swapoff /swapfile
+sudo rm -f /swapfile
+
 # Remove temp files
 sudo apt clean
 rm -rf /home/user/{.[!.],}*
