@@ -248,8 +248,10 @@ sudo rm -rf /lib/modules/*/kernel/drivers/staging
 sudo rm -rf /lib/modules/*/kernel/drivers/infiniband
 sudo rm -rf /lib/modules/*/kernel/drivers/media
 sudo rm -rf /lib/modules/*/kernel/drivers/scsi
+sudo rm -rf /lib/modules/*/kernel/drivers/iio
 sudo rm -rf /lib/modules/*/kernel/drivers/net/wireless
 sudo rm -rf /lib/modules/*/kernel/drivers/net/usb
+sudo rm -rf /lib/modules/*/kernel/drivers/net/can
 sudo rm -rf /lib/modules/*/kernel/drivers/usb/misc
 sudo rm -rf /lib/modules/*/kernel/drivers/usb/serial
 sudo rm -rf /lib/modules/*/kernel/drivers/usb/gadget
