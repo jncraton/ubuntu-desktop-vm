@@ -234,6 +234,8 @@ sudo rm -rf /lib/module/*/kernel/net/bluetooth
 sudo rm -rf /lib/module/*/kernel/fs/ocfs2
 sudo rm -rf /lib/module/*/kernel/fs/btrfs
 sudo rm -rf /lib/module/*/kernel/fs/xfs
+sudo rm -rf /lib/module/*/kernel/fs/nfs
+sudo rm -rf /lib/module/*/kernel/fs/nls
 sudo rm -rf /lib/module/*/kernel/drivers/wireless
 sudo rm -rf /lib/module/*/kernel/drivers/staging
 
