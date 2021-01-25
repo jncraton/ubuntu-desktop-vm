@@ -199,7 +199,7 @@ sudo apt -y install ifupdown
 # Use old standard names for interfaces (e.g eth0)
 echo 'GRUB_CMDLINE_LINUX=" net.ifnames=0 biosdevname=0"' | sudo tee -a /etc/default/grub
 sudo update-grub
-echo auto eth0 | sudo tee /etc/network/interfaces
+echo allow-hotplug eth0 | sudo tee /etc/network/interfaces
 echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
 
 # Remove dependencies
