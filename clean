@@ -254,7 +254,7 @@ sudo rm -rf /lib/modules/*/kernel/drivers/usb/misc
 sudo rm -rf /lib/modules/*/kernel/drivers/usb/serial
 sudo rm -rf /lib/modules/*/kernel/drivers/usb/gadget
 sudo find /lib/modules/*/kernel/drivers/net/ethernet/ -mindepth 1 -maxdepth 1 -not -name intel -not -name amd -not -name realtek -exec rm -rf {} \;
-sudo find /lib/modules/*/kernel/drivers/gpu/drm/ -mindepth 1 -maxdepth 1  -type d -not -name virtio -not -name vboxvideo -not -name cirrus -not -name vmwgfx -not -name qxl -exec rm -rf {} \;
+sudo find /lib/modules/*/kernel/drivers/gpu/drm/ -mindepth 1 -maxdepth 1  -type d -not -name virtio -not -name vboxvideo -not -name cirrus -not -name vmwgfx -not -name qxl -not -name ttm -exec rm -rf {} \;
 
 # Zero free space
 dd bs=4M if=/dev/zero of=/var/tmp/empty || rm /var/tmp/empty
