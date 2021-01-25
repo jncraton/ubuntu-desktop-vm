@@ -225,6 +225,7 @@ sudo rm -rf /usr/share/backgrounds/*
 sudo rm -f /boot/*.old
 
 # Remove extra kernel modules
+rm -rf /lib/module/*/build
 rm -rf /lib/module/*/kernel/sound
 rm -rf /lib/module/*/kernel/zfs
 rm -rf /lib/module/*/kernel/wireguard
