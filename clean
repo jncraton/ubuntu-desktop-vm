@@ -225,17 +225,17 @@ sudo rm -rf /usr/share/backgrounds/*
 sudo rm -f /boot/*.old
 
 # Remove extra kernel modules
-rm -rf /lib/module/*/build
-rm -rf /lib/module/*/kernel/sound
-rm -rf /lib/module/*/kernel/zfs
-rm -rf /lib/module/*/kernel/wireguard
-rm -rf /lib/module/*/kernel/net/wireless
-rm -rf /lib/module/*/kernel/net/bluetooth
-rm -rf /lib/module/*/kernel/fs/ocfs2
-rm -rf /lib/module/*/kernel/fs/btrfs
-rm -rf /lib/module/*/kernel/fs/xfs
-rm -rf /lib/module/*/kernel/drivers/wireless
-rm -rf /lib/module/*/kernel/drivers/staging
+sudo rm -rf /lib/module/*/build
+sudo rm -rf /lib/module/*/kernel/sound
+sudo rm -rf /lib/module/*/kernel/zfs
+sudo rm -rf /lib/module/*/kernel/wireguard
+sudo rm -rf /lib/module/*/kernel/net/wireless
+sudo rm -rf /lib/module/*/kernel/net/bluetooth
+sudo rm -rf /lib/module/*/kernel/fs/ocfs2
+sudo rm -rf /lib/module/*/kernel/fs/btrfs
+sudo rm -rf /lib/module/*/kernel/fs/xfs
+sudo rm -rf /lib/module/*/kernel/drivers/wireless
+sudo rm -rf /lib/module/*/kernel/drivers/staging
 
 # Zero free space
 dd bs=4M if=/dev/zero of=/var/tmp/empty || rm /var/tmp/empty
