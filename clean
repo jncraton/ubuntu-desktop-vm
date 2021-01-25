@@ -211,7 +211,7 @@ sudo apt -y upgrade
 # Remove swapfile
 sudo swapoff -a
 sudo rm -f /swapfile
-sudo sed 's/^\/swapfile/\#\/swapfile/' /etc/fstab
+sudo sed -i 's/^\/swapfile/\#\/swapfile/' /etc/fstab
 
 # Remove temp files
 sudo apt clean
