@@ -210,10 +210,9 @@ sudo apt -y upgrade
 
 # Remove temp files
 sudo apt clean
-shopt -s dotglob
-rm -rf /home/user/*
-sudo rm -rf /root/*
-sudo rm -rf /tmp/*
+rm -rf /home/user/{.[!.],}*
+sudo rm -rf /root/{.[!.],}*
+sudo rm -rf /tmp/{.[!.],}*
 sudo rm -rf /var/log/*
 sudo rm -rf /var/backups/*
 sudo rm -rf /var/cache/*
