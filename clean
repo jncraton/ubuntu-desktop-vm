@@ -241,9 +241,11 @@ sudo rm -rf /lib/modules/*/kernel/drivers/bluetooth
 sudo rm -rf /lib/modules/*/kernel/drivers/hwmon
 sudo rm -rf /lib/modules/*/kernel/drivers/staging
 sudo rm -rf /lib/modules/*/kernel/drivers/infiniband
+sudo rm -rf /lib/modules/*/kernel/drivers/media
 sudo rm -rf /lib/modules/*/kernel/drivers/net/wireless
 sudo rm -rf /lib/modules/*/kernel/drivers/net/usb
 sudo find /lib/modules/*/kernel/drivers/net/ethernet/ -mindepth 1 -maxdepth 1 -not -name intel -not -name amd -not -name realtek -exec rm -rf {} \;
+sudo find /lib/modules/*/kernel/drivers/gpu/drm/ -mindepth 1 -maxdepth 1 -not -name virtio -exec rm -rf {} \;
 
 # Zero free space
 dd bs=4M if=/dev/zero of=/var/tmp/empty || rm /var/tmp/empty
