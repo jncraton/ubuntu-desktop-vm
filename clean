@@ -208,9 +208,10 @@ sudo apt -y --purge autoremove
 # Upgrade the system
 sudo apt -y upgrade
 
-# Remove swapfile (will be recreated on first boot)
-sudo swapoff /swapfile
+# Remove swapfile
+sudo swapoff -a
 sudo rm -f /swapfile
+sudo sed 's/^\/swapfile/\#\/swapfile/' /etc/fstab
 
 # Remove temp files
 sudo apt clean
