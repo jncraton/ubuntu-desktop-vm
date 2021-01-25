@@ -262,6 +262,9 @@ gsettings set org.gnome.desktop.background color-shading-type vertical
 # Disable animations
 gsettings set org.gnome.desktop.interface enable-animations false
 
+# Add terminal to favorites
+dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
+
 echo "Powering off in 5 seconds..."
 sleep 5
 
