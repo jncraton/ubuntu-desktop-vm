@@ -26,4 +26,4 @@ The following process was completed after installation to minimze the size of th
 - zero free space
 - Compress image after poweroff
 
-The complete process can be executed by running the included `clean` script on the guest followed by `vboxmanage modifymedium --compact disk.vdi` on the host.
+The complete process can be executed by running the included `clean` script on the guest.
