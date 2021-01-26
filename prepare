@@ -44,6 +44,7 @@ alsa-utils \
 apparmor \
 apport \
 appstream \
+app-install-data-partner \
 apt-utils \
 aspell \
 "^busybox.*" \
@@ -128,6 +129,7 @@ humanity-icon-theme \
 info \
 initramfs-tools \
 iptables \
+irqbalance \
 kerneloops \
 language-selector-common \
 language-selector-gnome \
