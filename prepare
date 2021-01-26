@@ -248,6 +248,7 @@ sudo rm -rf /var/log/*
 sudo rm -rf /var/backups/*
 sudo rm -rf /var/cache/*
 sudo rm -rf /var/lib/apt/lists
+sudo rm -rf /var/lib/dpkg/*-old
 
 # Remove backgrounds
 sudo rm -rf /usr/share/backgrounds/*
