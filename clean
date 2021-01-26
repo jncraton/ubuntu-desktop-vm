@@ -265,12 +265,6 @@ sudo rm -rf /lib/modules/*/kernel/drivers/usb/gadget
 sudo find /lib/modules/*/kernel/drivers/net/ethernet/ -mindepth 1 -maxdepth 1 -not -name intel -not -name amd -not -name realtek -exec rm -rf {} \;
 sudo find /lib/modules/*/kernel/drivers/gpu/drm/ -mindepth 1 -maxdepth 1  -type d -not -name virtio -not -name vboxvideo -not -name cirrus -not -name vmwgfx -not -name qxl -not -name ttm -exec rm -rf {} \;
 
-echo Waiting 5 seconds before scrubbing free space...
-sleep 5
-
-# Zero free space
-sudo dd bs=4M if=/dev/zero of=/var/tmp/empty || sudo rm -f /var/tmp/empty
-
 # Adjust Gnome settings
 # Disable screen blanking
 gsettings set org.gnome.desktop.session idle-delay 0
@@ -290,8 +284,14 @@ gsettings set org.gnome.desktop.interface enable-animations false
 # Add terminal to favorites
 dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
 
-echo "Powering off in 5 seconds..."
-sleep 5
+echo Waiting 3 seconds before scrubbing free space...
+sleep 3
+
+# Zero free space
+sudo dd bs=4M if=/dev/zero of=/var/tmp/empty || sudo rm -f /var/tmp/empty
+
+echo "Powering off in 3 seconds..."
+sleep 3
 
 # Shut down
 sudo shutdown now
