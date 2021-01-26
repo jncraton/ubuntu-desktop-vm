@@ -312,6 +312,9 @@ dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nauti
 # Recreate important paths that may have been deleted
 mkdir /home/user/Desktop
 
+# Set default editor
+echo export EDITOR=micro > /home/user/.bashrc
+
 # Improve boot time by disabling slower services
 sudo systemctl disable udisks2
 sudo systemctl disable systemd-timesyncd.service
