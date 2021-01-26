@@ -303,6 +303,13 @@ gsettings set org.gnome.desktop.interface enable-animations false
 # Add terminal to favorites
 dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
 
+# Recreate important paths that may have been deleted
+mkdir /home/user/Desktop
+
+# Improve boot time by disabling slower services
+sudo systemctl disable udisks2
+sudo systemctl disable systemd-timesyncd.service
+
 echo Waiting 3 seconds before scrubbing free space...
 sleep 3
 
