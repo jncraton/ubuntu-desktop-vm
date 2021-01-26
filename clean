@@ -269,7 +269,7 @@ echo Waiting 5 seconds before scrubbing free space...
 sleep 5
 
 # Zero free space
-sudo dd bs=4M if=/dev/zero of=/var/tmp/empty || rm /var/tmp/empty
+sudo dd bs=4M if=/dev/zero of=/var/tmp/empty || sudo rm -f /var/tmp/empty
 
 # Adjust Gnome settings
 # Disable screen blanking
