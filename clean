@@ -201,6 +201,8 @@ yelp
 
 # Add basic networking
 sudo apt -y install ifupdown
+# Show boot messages instead of splash screen
+echo 'GRUB_CMDLINE_LINUX_DEFAULT=""' | sudo tee -a /etc/default/grub
 # Use old standard names for interfaces (e.g eth0)
 echo 'GRUB_CMDLINE_LINUX=" net.ifnames=0 biosdevname=0"' | sudo tee -a /etc/default/grub
 sudo update-grub
