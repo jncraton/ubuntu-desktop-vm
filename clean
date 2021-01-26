@@ -265,8 +265,11 @@ sudo rm -rf /lib/modules/*/kernel/drivers/usb/gadget
 sudo find /lib/modules/*/kernel/drivers/net/ethernet/ -mindepth 1 -maxdepth 1 -not -name intel -not -name amd -not -name realtek -exec rm -rf {} \;
 sudo find /lib/modules/*/kernel/drivers/gpu/drm/ -mindepth 1 -maxdepth 1  -type d -not -name virtio -not -name vboxvideo -not -name cirrus -not -name vmwgfx -not -name qxl -not -name ttm -exec rm -rf {} \;
 
+echo Waiting 5 seconds before scrubbing free space...
+sleep 5
+
 # Zero free space
-dd bs=4M if=/dev/zero of=/var/tmp/empty || rm /var/tmp/empty
+sudo dd bs=4M if=/dev/zero of=/var/tmp/empty || rm /var/tmp/empty
 
 # Adjust Gnome settings
 # Disable screen blanking
@@ -279,6 +282,8 @@ gsettings set org.gnome.desktop.screensaver lock-enabled false
 gsettings set org.gnome.desktop.background primary-color '#992233'
 gsettings set org.gnome.desktop.background secondary-color '#550055'
 gsettings set org.gnome.desktop.background color-shading-type vertical
+gsettings set org.gnome.desktop.background picture-options 'none'
+gsettings set org.gnome.desktop.background picture-uri ''
 # Disable animations
 gsettings set org.gnome.desktop.interface enable-animations false
 
