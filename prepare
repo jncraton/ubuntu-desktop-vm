@@ -6,7 +6,7 @@ set -eu -o pipefail
 sudo apt -y update
 
 # Install new packages (xclip is used by micro)
-sudo apt install -y python3-pip git build-essential xclip upx-ucl
+sudo apt install -y python3-pip git build-essential xclip upx-ucl initramfs-tools
 
 # Install micro from Github
 wget https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-linux64-static.tar.gz
@@ -25,6 +25,13 @@ sudo rm -f /boot/*5*
 
 # Add base kernel after removing HWE kernel
 sudo apt -y install linux-generic
+
+# Build a slim initramfs
+sudo sed -i 's/^MODULES=most/MODULES=dep/' /etc/initramfs-tools/initramfs.conf
+sudo mkinitramfs -c xz -o /boot/initrd.img-*
+
+# Remove kernel name map
+sudo rm -f /boot/System.map*
 
 # Remove extra packages
 sudo apt -y --purge remove \
@@ -119,6 +126,7 @@ hdparm \
 humanity-icon-theme \
 "^ibus.*" \
 info \
+initramfs-tools \
 iptables \
 kerneloops \
 language-selector-common \
