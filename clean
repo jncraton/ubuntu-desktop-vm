@@ -178,12 +178,14 @@ usbutils \
 wamerican \
 wbritish \
 whiptail \
+wireless-tools \
 whoopsie \
 wpasupplicant \
 xcursor-themes \
 xdg-user-dirs \
 xdg-utils \
 xfonts-encodings \
+xorg-docs-core \
 xserver-xephyr \
 xserver-xorg-input-wacom \
 xserver-xorg-legacy \
