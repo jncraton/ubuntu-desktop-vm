@@ -5,8 +5,17 @@ set -eu -o pipefail
 # Update the system
 sudo apt -y update
 
-# Install new packages
-sudo apt install -y python3-pip git micro build-essential
+# Install new packages (xclip is used by micro)
+sudo apt install -y python3-pip git build-essential xclip upx-ucl
+
+# Install micro from Github
+wget https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-linux64-static.tar.gz
+tar -xvf micro-*.tar.gz
+rm micro-*.tar.gz
+sudo mv micro-*/micro /usr/bin
+
+# Compress larger bins
+sudo upx -9 /usr/bin/micro
 
 # Remove kernel packages
 sudo apt -y --purge remove linux-image-generic-hwe-20.04 "^linux-.*5\..*"
@@ -123,6 +132,7 @@ logrotate \
 lshw \
 ltrace \
 memtest86+ \
+micro \
 mobile-broadband-provider-info \
 modemmanager \
 mousetweaks \
@@ -172,6 +182,7 @@ update-inetd \
 update-manager \
 update-manager-core \
 update-notifier \
+upx-ucl \
 usb-modeswitch \
 usbmuxd \
 usbutils \
