@@ -20,6 +20,7 @@ sudo apt -y install linux-generic
 # Remove extra packages
 sudo apt -y --purge remove \
 "^alsa.*" \
+anacron \
 "^avahi.*" \
 acl \
 acpid \
@@ -33,6 +34,7 @@ aspell \
 bc \
 bluez \
 brltty \
+cron \
 "^cups.*" \
 ed \
 eject \
@@ -128,6 +130,7 @@ mtr-tiny \
 nautilus-sendto \
 netbase \
 netplan.io \
+networkd-dispatcher \
 network-manager-config-connectivity-ubuntu \
 network-manager-gnome \
 network-manager \
