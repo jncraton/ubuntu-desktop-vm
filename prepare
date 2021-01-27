@@ -5,11 +5,8 @@ set -eu -o pipefail
 # Update the system
 sudo apt -y update
 
-# Remove old package
-sudo apt purge -y build-essential
-
 # Install new packages (xclip is used by micro)
-sudo apt install -y python3-pip git gcc make xclip upx-ucl initramfs-tools
+sudo apt install -y python3-pip git build-essential xclip upx-ucl initramfs-tools
 
 # Install micro from Github
 sudo wget https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-linux64-static.tar.gz
@@ -54,6 +51,7 @@ aspell \
 bc \
 bluez \
 brltty \
+build-essential \
 cron \
 "^cups.*" \
 ed \
@@ -233,6 +231,9 @@ echo 'GRUB_CMDLINE_LINUX=" net.ifnames=0 biosdevname=0"' | sudo tee -a /etc/defa
 sudo update-grub
 echo allow-hotplug eth0 | sudo tee /etc/network/interfaces
 echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
+
+# Add just make and gcc
+sudo apt -y install make gcc
 
 # Remove dependencies
 sudo apt -y --purge autoremove
