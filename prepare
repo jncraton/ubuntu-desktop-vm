@@ -302,6 +302,10 @@ sudo rm -f /usr/lib/x86_64-linux-gnu/dri/zlink_dri.so
 # Remove firmware files unused by VM
 sudo rm -rf /usr/lib/firmware
 
+# Remove locales
+shopt -s extglob
+sudo rm -rf /usr/share/locale/!(en)
+
 # Adjust Gnome settings
 # Disable screen blanking
 gsettings set org.gnome.desktop.session idle-delay 0
