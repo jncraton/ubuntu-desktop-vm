@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -eu -o pipefail
+shopt -s extglob
+
+# Remove swapfile
+sudo swapoff -a
+sudo rm -f /swapfile
+sudo sed -i 's/^\/swapfile/\#\/swapfile/' /etc/fstab
+
+# Remove temp files
+sudo apt clean
+rm -rf /home/user/{.[!.],}*
+sudo rm -rf /root/{.[!.],}*
+sudo rm -rf /tmp/{.[!.],}*
+sudo rm -rf /var/log/*
+sudo rm -rf /var/backups/*
+sudo rm -rf /var/cache/*
+sudo rm -rf /var/lib/apt/lists
+sudo rm -rf /var/lib/dpkg/*-old
+
+# Remove backgrounds
+sudo rm -rf /usr/share/backgrounds/*
+
+# Remove locales
+sudo rm -rf /usr/share/locale/!(en)

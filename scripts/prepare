@@ -226,58 +226,8 @@ sudo apt -y --purge autoremove
 sudo apt -y upgrade
 
 ./trim-kernel
-
-# Remove swapfile
-sudo swapoff -a
-sudo rm -f /swapfile
-sudo sed -i 's/^\/swapfile/\#\/swapfile/' /etc/fstab
-
-# Remove temp files
-sudo apt clean
-rm -rf /home/user/{.[!.],}*
-sudo rm -rf /root/{.[!.],}*
-sudo rm -rf /tmp/{.[!.],}*
-sudo rm -rf /var/log/*
-sudo rm -rf /var/backups/*
-sudo rm -rf /var/cache/*
-sudo rm -rf /var/lib/apt/lists
-sudo rm -rf /var/lib/dpkg/*-old
-
-# Remove backgrounds
-sudo rm -rf /usr/share/backgrounds/*
-
-# Remove locales
-shopt -s extglob
-sudo rm -rf /usr/share/locale/!(en)
-
-# Adjust Gnome settings
-# Disable screen blanking
-gsettings set org.gnome.desktop.session idle-delay 0
-# Disable screen locking after suspend
-gsettings set org.gnome.desktop.lockdown disable-lock-screen true
-# Disable screen locking from screensaver
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-# Use gradient background color
-gsettings set org.gnome.desktop.background primary-color '#992233'
-gsettings set org.gnome.desktop.background secondary-color '#550055'
-gsettings set org.gnome.desktop.background color-shading-type vertical
-gsettings set org.gnome.desktop.background picture-options 'none'
-gsettings set org.gnome.desktop.background picture-uri ''
-# Disable animations
-gsettings set org.gnome.desktop.interface enable-animations false
-
-# Add terminal to favorites
-dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
-
-# Recreate important paths that may have been deleted
-mkdir /home/user/Desktop
-
-# Set default editor
-echo export EDITOR=micro > /home/user/.bashrc
-
-# Improve boot time by disabling slower services
-sudo systemctl disable udisks2
-sudo systemctl disable systemd-timesyncd.service
+./trim-system
+./apply-settings
 
 echo Waiting 3 seconds before scrubbing free space...
 sleep 3

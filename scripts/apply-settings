@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -eu -o pipefail
+
+# Adjust Gnome settings
+# Disable screen blanking
+gsettings set org.gnome.desktop.session idle-delay 0
+# Disable screen locking after suspend
+gsettings set org.gnome.desktop.lockdown disable-lock-screen true
+# Disable screen locking from screensaver
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+# Use gradient background color
+gsettings set org.gnome.desktop.background primary-color '#992233'
+gsettings set org.gnome.desktop.background secondary-color '#550055'
+gsettings set org.gnome.desktop.background color-shading-type vertical
+gsettings set org.gnome.desktop.background picture-options 'none'
+gsettings set org.gnome.desktop.background picture-uri ''
+# Disable animations
+gsettings set org.gnome.desktop.interface enable-animations false
+
+# Add terminal to favorites
+dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
+
+# Recreate important paths that may have been deleted
+mkdir /home/user/Desktop
+
+# Set default editor
+echo export EDITOR=micro > /home/user/.bashrc
+
+# Improve boot time by disabling slower servicessudo systemctl disable udisks2
+sudo systemctl disable systemd-timesyncd.service
