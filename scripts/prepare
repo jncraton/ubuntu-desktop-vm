@@ -226,17 +226,5 @@ sudo apt -y --purge autoremove
 sudo apt -y upgrade
 
 ./trim-kernel
+
 ./trim-system
-./apply-settings
-
-echo Waiting 3 seconds before scrubbing free space...
-sleep 3
-
-# Zero free space
-sudo dd bs=4M if=/dev/zero of=/var/tmp/empty || sudo rm -f /var/tmp/empty
-
-echo "Powering off in 3 seconds..."
-sleep 3
-
-# Shut down
-sudo shutdown now
