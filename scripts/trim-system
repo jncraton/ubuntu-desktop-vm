@@ -53,6 +53,11 @@ mkdir /home/user/Desktop
 # Set default editor
 echo export EDITOR=micro > /home/user/.bashrc
 
+# Add gnome extension
+mkdir -p /home/user/.local/share/gnome-shell/extensions/vm-tweaks
+/home/user/.local/share/gnome-shell/extensions/vm-tweaks && git clone https://github.com/jncraton/gnome-vm-tweaks
+gnome-extensions enable vm-tweaks
+
 # Improve boot time by disabling slower services
 sudo systemctl disable udisks2
 sudo systemctl disable systemd-timesyncd.service
