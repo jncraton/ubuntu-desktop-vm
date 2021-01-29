@@ -3,6 +3,9 @@
 set -eu -o pipefail
 shopt -s extglob
 
+# Remove dependencies
+sudo apt -y --purge autoremove
+
 # Remove swapfile
 sudo swapoff -a
 sudo rm -f /swapfile
