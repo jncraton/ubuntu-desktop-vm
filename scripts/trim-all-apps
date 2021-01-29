@@ -3,6 +3,7 @@
 set -eu -o pipefail
 
 sudo apt -y purge firefox nautilus file-roller gnome-screenshot python3-pip make gcc git
+sudo apt -y --purge autoremove
 
 ./trim-system
 ./apply-sessings
