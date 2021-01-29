@@ -55,8 +55,7 @@ echo export EDITOR=micro > /home/user/.bashrc
 
 # Add gnome extension
 mkdir -p /home/user/.local/share/gnome-shell/extensions/vm-tweaks
-git clone https://github.com/jncraton/gnome-vm-tweaks
-mv gnome-vm-tweaks/* /home/user/.local/share/gnome-shell/extensions/vm-tweaks
+cd /home/user/.local/share/gnome-shell/extensions/vm-tweaks && git clone https://github.com/jncraton/gnome-vm-tweaks && mv gnome-vm-tweaks/extension.js . && mv gnome-vm-tweaks/metadata.json . && rm -rf gnome-vm-tweaks
 gnome-extensions enable vm-tweaks
 
 # Improve boot time by disabling slower services
