@@ -6,7 +6,7 @@ sudo apt -y purge firefox nautilus file-roller gnome-screenshot python3-pip make
 sudo apt -y --purge autoremove
 
 ./trim-system
-./apply-sessings
+./apply-settings
 
 sleep 3
 
