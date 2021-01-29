@@ -202,10 +202,6 @@ yaru-theme-icon \
 yaru-theme-sound \
 yelp
 
-# For a very minimal install, uncomment the following
-# This will include only gnome-terminal
-# sudo apt -y --purge remove gnome-screenshot file-roller nautilus firefox
-
 # Add basic networking
 sudo apt -y install ifupdown
 # Show boot messages instead of splash screen
