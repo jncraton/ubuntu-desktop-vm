@@ -56,14 +56,14 @@ echo export EDITOR=micro > /home/user/.bashrc
 # Improve boot time by disabling slower servicessudo systemctl disable udisks2
 sudo systemctl disable systemd-timesyncd.service
 
-echo Waiting 3 seconds before scrubbing free space...
-sleep 3
+echo Waiting 8 seconds before scrubbing free space...
+sleep 8
 
 # Zero free space
 sudo dd bs=4M if=/dev/zero of=/var/tmp/empty || sudo rm -f /var/tmp/empty
 
-echo "Powering off in 3 seconds..."
-sleep 3
+echo "Powering off in 8 seconds..."
+sleep 8
 
 # Shut down
 sudo shutdown now
