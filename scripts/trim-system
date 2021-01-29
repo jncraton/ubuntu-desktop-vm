@@ -53,17 +53,22 @@ mkdir /home/user/Desktop
 # Set default editor
 echo export EDITOR=micro > /home/user/.bashrc
 
-# Improve boot time by disabling slower servicessudo systemctl disable udisks2
+# Improve boot time by disabling slower services
+sudo systemctl disable udisks2
 sudo systemctl disable systemd-timesyncd.service
 
-echo Waiting 8 seconds before scrubbing free space...
-sleep 8
+sudo sync -f
+sudo fstrim -A
+
+echo Waiting 15 seconds before scrubbing free space...
+sleep 15
 
 # Zero free space
 sudo dd bs=4M if=/dev/zero of=/var/tmp/empty || sudo rm -f /var/tmp/empty
+sudo sync -f
 
-echo "Powering off in 60 seconds..."
-sleep 60
+echo "Powering off in 15 seconds..."
+sleep 15
 
 # Shut down
 sudo shutdown now
