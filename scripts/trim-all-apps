@@ -3,3 +3,12 @@
 set -eu -o pipefail
 
 sudo apt purge firefox nautilus file-roller gnome-screenshot python3-pip make gcc git
+
+./trim-system
+./apply-sessings
+
+sleep 3
+
+./zero
+
+sudo shutdown -r now
