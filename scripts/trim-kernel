@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eu -o pipefail
+
 # Remove kernel packages
 sudo apt -y --purge remove linux-image-generic-hwe-20.04 "^linux-.*5\..*"
 
