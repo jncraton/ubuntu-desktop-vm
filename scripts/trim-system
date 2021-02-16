@@ -62,10 +62,6 @@ kill -3 $(pidof gnome-shell)
 sleep 5
 gnome-extensions enable vm-tweaks
 
-# Improve boot time by disabling slower services
-sudo systemctl disable udisks2
-sudo systemctl disable systemd-timesyncd.service
-
 sudo sync -f
 sudo fstrim -A
 
