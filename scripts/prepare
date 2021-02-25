@@ -6,7 +6,7 @@ set -eu -o pipefail
 sudo apt -y update
 
 # Install new packages (xclip is used by micro)
-sudo apt install -y python3-pip git xclip upx-ucl initramfs-tools
+sudo apt install -y python3-pip git xclip upx-ucl initramfs-tools virtualbox-guest-utils
 
 # Install micro from Github
 sudo wget https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-linux64-static.tar.gz

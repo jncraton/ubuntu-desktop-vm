@@ -57,6 +57,9 @@ echo export EDITOR=micro > /home/user/.bashrc
 mkdir -p /home/user/.local/share/gnome-shell/extensions/vm-tweaks
 cd /home/user/.local/share/gnome-shell/extensions/vm-tweaks && git clone https://github.com/jncraton/gnome-vm-tweaks && mv gnome-vm-tweaks/extension.js . && mv gnome-vm-tweaks/metadata.json . && rm -rf gnome-vm-tweaks
 
+# Add `user` to vboxsf group to allow writing to virtualbox shared folders
+sudo adduser user vboxsf
+
 echo Restart gnome-shell session...
 kill -3 $(pidof gnome-shell)
 sleep 5
