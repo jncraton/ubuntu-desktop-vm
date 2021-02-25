@@ -145,7 +145,6 @@ openvpn \
 os-prober \
 "^printer-driver.*" \
 packagekit \
-pciutils \
 pcmciautils \
 plymouth \
 poppler-data \
