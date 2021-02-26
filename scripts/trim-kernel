@@ -4,7 +4,7 @@ set -eu -o pipefail
 
 # Allow removal of running kernel
 sudo rm -f /usr/bin/linux-check-removal
-sudo ln -s /usr/bin/true /usr/bin/lunx-check-removal
+sudo ln -s /usr/bin/true /usr/bin/linux-check-removal
 
 # Remove kernel packages
 sudo apt -y --purge remove linux-image-generic-hwe-20.04 "^linux-.*5\..*"
