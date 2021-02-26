@@ -3,7 +3,7 @@
 set -eu -o pipefail
 
 # Allow removal of running kernel
-sudo rm -f /usr/bin/lunx-check-removal
+sudo rm -f /usr/bin/linux-check-removal
 sudo ln -s /usr/bin/true /usr/bin/lunx-check-removal
 
 # Remove kernel packages
