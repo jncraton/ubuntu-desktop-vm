@@ -2,19 +2,3 @@
 
 set -eu -o pipefail
 
-# Allow removal of running kernel
-sudo rm -f /usr/bin/linux-check-removal
-sudo ln -s /usr/bin/true /usr/bin/linux-check-removal
-
-# Remove kernel packages
-sudo apt -y --purge remove linux-image-generic-hwe-20.04 "^linux-.*5\..*"
-
-# Absolutely remove all kernels
-sudo rm -f /boot/*5*
-
-# Add base kernel after removing HWE kernel
-sudo apt -y install linux-generic
-
-# Build a slim initramfs
-sudo sed -i 's/^MODULES=most/MODULES=dep/' /etc/initramfs-tools/initramfs.conf
-sudo mkinitramfs -c xz -o /boot/initrd.img-*
