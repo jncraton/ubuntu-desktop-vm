@@ -33,7 +33,7 @@ mkdir /home/user/Desktop
 
 echo Restart gnome-shell session...
 kill -3 $(pidof gnome-shell)
-sleep 5
+sleep 10
 
 # Adjust Gnome settings
 # Disable screen blanking
@@ -53,6 +53,8 @@ gsettings set org.gnome.desktop.interface enable-animations false
 
 # Add terminal to favorites
 dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
+
+echo "Gnome settings updated"
 
 # Set default editor
 echo export EDITOR=micro > /home/user/.bashrc
