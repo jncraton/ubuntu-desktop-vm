@@ -28,6 +28,10 @@ sudo rm -rf /usr/share/backgrounds/*
 # Remove locales
 sudo rm -rf /usr/share/locale/!(en)
 
+echo Restart gnome-shell session...
+kill -3 $(pidof gnome-shell)
+sleep 5
+
 # Adjust Gnome settings
 # Disable screen blanking
 gsettings set org.gnome.desktop.session idle-delay 0
@@ -60,9 +64,6 @@ cd /home/user/.local/share/gnome-shell/extensions/vm-tweaks && git clone https:/
 # Add `user` to vboxsf group to allow writing to virtualbox shared folders
 sudo adduser user vboxsf
 
-echo Restart gnome-shell session...
-kill -3 $(pidof gnome-shell)
-sleep 5
 gnome-extensions enable vm-tweaks
 
 sudo sync -f
