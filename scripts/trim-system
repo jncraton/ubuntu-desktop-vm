@@ -28,6 +28,9 @@ sudo rm -rf /usr/share/backgrounds/*
 # Remove locales
 sudo rm -rf /usr/share/locale/!(en)
 
+# Recreate important paths that may have been deleted
+mkdir /home/user/Desktop
+
 echo Restart gnome-shell session...
 kill -3 $(pidof gnome-shell)
 sleep 5
@@ -50,9 +53,6 @@ gsettings set org.gnome.desktop.interface enable-animations false
 
 # Add terminal to favorites
 dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
-
-# Recreate important paths that may have been deleted
-mkdir /home/user/Desktop
 
 # Set default editor
 echo export EDITOR=micro > /home/user/.bashrc
