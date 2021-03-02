@@ -201,16 +201,6 @@ yaru-theme-icon \
 yaru-theme-sound \
 yelp
 
-# Add basic networking
-sudo apt -y install ifupdown
-# Show boot messages instead of splash screen
-echo 'GRUB_CMDLINE_LINUX_DEFAULT=""' | sudo tee -a /etc/default/grub
-# Use old standard names for interfaces (e.g eth0)
-echo 'GRUB_CMDLINE_LINUX=" net.ifnames=0 biosdevname=0"' | sudo tee -a /etc/default/grub
-sudo update-grub
-echo allow-hotplug eth0 | sudo tee /etc/network/interfaces
-echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
-
 # Allow removal of running kernel
 sudo rm -f /usr/bin/linux-check-removal
 sudo ln -s /usr/bin/true /usr/bin/linux-check-removal
@@ -224,6 +214,16 @@ sudo rm -f /boot/*5*
 # Add just make and gcc
 # Add base kernel after removing HWE kernel
 sudo apt -y install linux-generic make gcc
+
+# Add basic networking
+sudo apt -y install ifupdown
+# Show boot messages instead of splash screen
+echo 'GRUB_CMDLINE_LINUX_DEFAULT=""' | sudo tee -a /etc/default/grub
+# Use old standard names for interfaces (e.g eth0)
+echo 'GRUB_CMDLINE_LINUX=" net.ifnames=0 biosdevname=0"' | sudo tee -a /etc/default/grub
+sudo update-grub
+echo allow-hotplug eth0 | sudo tee /etc/network/interfaces
+echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
 
 # Build a slim initramfs
 sudo sed -i 's/^MODULES=most/MODULES=dep/' /etc/initramfs-tools/initramfs.conf
