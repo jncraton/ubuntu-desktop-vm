@@ -31,6 +31,8 @@ sudo rm -rf /usr/share/locale/!(en)
 # Recreate important paths that may have been deleted
 mkdir /home/user/Desktop
 
+sudo sync -f
+
 echo Restart gnome-shell session...
 kill -3 $(pidof gnome-shell)
 sleep 10
