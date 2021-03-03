@@ -35,6 +35,8 @@ sudo sync -f
 
 echo Restart gnome-shell session...
 kill -3 $(pidof gnome-shell)
+sleep 1
+kill -3 $(pidof gnome-shell)
 sleep 10
 
 # Adjust Gnome settings
