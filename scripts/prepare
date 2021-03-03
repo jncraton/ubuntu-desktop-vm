@@ -5,8 +5,18 @@ set -eu -o pipefail
 # Update the system
 sudo apt -y update
 
+# Allow removal of running kernel
+sudo rm -f /usr/bin/linux-check-removal
+sudo ln -s /usr/bin/true /usr/bin/linux-check-removal
+
+# Remove kernel packages
+sudo apt -y --purge remove linux-image-generic-hwe-20.04 "^linux-.*5\..*"
+
+# Absolutely remove all kernels
+sudo rm -f /boot/*5*
+
 # Install new packages (xclip is used by micro)
-sudo apt install -y python3-pip git xclip upx-ucl initramfs-tools virtualbox-guest-utils lxrandr
+sudo apt install -y python3-pip git xclip upx-ucl initramfs-tools virtualbox-guest-utils lxrandr linux-image-5.4.0-66-generic linux-modules-extra-5.4.0-66-generic ifupdown
 
 # Install micro from Github
 sudo wget https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-linux64-static.tar.gz
@@ -16,6 +26,20 @@ sudo mv micro-*/micro /usr/bin
 
 # Compress larger bins
 sudo upx -9 /usr/bin/micro
+
+# Show boot messages instead of splash screen
+echo 'GRUB_CMDLINE_LINUX_DEFAULT=""' | sudo tee -a /etc/default/grub
+
+# Add basic networking
+echo allow-hotplug eth0 | sudo tee /etc/network/interfaces
+echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
+# Use old standard names for interfaces (e.g eth0)
+echo 'GRUB_CMDLINE_LINUX=" net.ifnames=0 biosdevname=0"' | sudo tee -a /etc/default/grub
+sudo update-grub
+
+# Build a slim initramfs
+sudo sed -i 's/^MODULES=most/MODULES=dep/' /etc/initramfs-tools/initramfs.conf
+sudo mkinitramfs -c xz -o /boot/initrd.img-*
 
 # Remove extra packages
 sudo apt -y --purge remove \
@@ -130,6 +154,10 @@ libllvm9 \
 libgnome-menu-3-0 \
 libproxy1-plugin-networkmanager \
 linux-sound-base \
+linux-firmware \
+"^linux-modules-extra.*" \
+"^linux-header.*" \
+linux-libc-dev \
 locales \
 logrotate \
 lshw \
@@ -213,36 +241,8 @@ yaru-theme-icon \
 yaru-theme-sound \
 yelp
 
-# Allow removal of running kernel
-sudo rm -f /usr/bin/linux-check-removal
-sudo ln -s /usr/bin/true /usr/bin/linux-check-removal
-
-# Remove kernel packages
-sudo apt -y --purge remove linux-image-generic-hwe-20.04 "^linux-.*5\..*"
-
-# Absolutely remove all kernels
-sudo rm -f /boot/*5*
-
 # Add just make and gcc
-# Add base kernel after removing HWE kernel
-sudo apt -y install linux-image-5.4.0-66-generic linux-modules-extra-5.4.0-66-generic make gcc libc6-dev
-
-# Add basic networking
-sudo apt -y install ifupdown
-# Show boot messages instead of splash screen
-echo 'GRUB_CMDLINE_LINUX_DEFAULT=""' | sudo tee -a /etc/default/grub
-# Use old standard names for interfaces (e.g eth0)
-echo 'GRUB_CMDLINE_LINUX=" net.ifnames=0 biosdevname=0"' | sudo tee -a /etc/default/grub
-sudo update-grub
-echo allow-hotplug eth0 | sudo tee /etc/network/interfaces
-echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
-
-# Build a slim initramfs
-sudo sed -i 's/^MODULES=most/MODULES=dep/' /etc/initramfs-tools/initramfs.conf
-sudo mkinitramfs -c xz -o /boot/initrd.img-*
-
-# Remove extra Linux packages
-sudo apt purge -y busybox-initramfs linux-firmware linux-headers-generic "^linux-modules-extra.*" "^linux-header.*" linux-libc-dev
+sudo apt -y install gcc make libc6-dev
 
 # Upgrade the system
 sudo apt -y upgrade
