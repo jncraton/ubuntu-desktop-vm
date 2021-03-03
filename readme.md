@@ -11,6 +11,11 @@ Installation
 - Download the [VM appliance](https://github.com/jncraton/ubuntu-desktop-vm/releases/download/v1.7/ubuntu-desktop.ova) file from the [releases](https://github.com/jncraton/ubuntu-desktop-vm/releases/latest)
 - Run it in your VM host of choice, such as [VirtualBox](https://www.virtualbox.org/) (Windows, MacOS, Linux) or [Virt-manager](https://virt-manager.org/) (Linux).
 
+Getting Started
+---------------
+
+If you've not had experience with a Linux or Unix command-line interface, you may want to consult [a tutorial](https://ubuntu.com/tutorials/command-line-for-beginners#3-opening-a-terminal) to help you become familiar with the basic commands.
+
 Password
 --------
 
@@ -37,6 +42,6 @@ SSH can be used to login to remote systems. Tools such as `scp` can be to copy f
 
 If desired `sshfs` can be used to mount a path from the host system on the guest system.
 
-# VirtualBox Guest Additions
+### VirtualBox Guest Additions
 
 VirtualBox guest additions are installed, so the "Shared Folder" functionality provided by this software should work correctly.
