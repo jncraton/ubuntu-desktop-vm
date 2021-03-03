@@ -34,10 +34,13 @@ aspell \
 "^busybox.*" \
 bc \
 bluez \
+bolt \
 brltty \
 build-essential \
+console-setup \
 cron \
 "^cups.*" \
+dosfstools \
 ed \
 eject \
 enchant-2 \
@@ -103,6 +106,7 @@ gnome-themes-extra \
 gnome-themes-extra-data \
 gpg \
 gpg-agent \
+dirmngr \
 gstreamer1.0-alsa \
 gstreamer1.0-gl \
 gstreamer1.0-pulseaudio \
@@ -111,9 +115,13 @@ gstreamer1.0-plugins-good \
 hdparm \
 humanity-icon-theme \
 "^ibus.*" \
+im-config \
+iio-sensor-proxy \
 info \
 initramfs-tools \
+install-info \
 iptables \
+iputils-tracepath \
 irqbalance \
 kerneloops \
 language-selector-common \
@@ -146,6 +154,7 @@ os-prober \
 "^printer-driver.*" \
 packagekit \
 pcmciautils \
+pkg-config \
 plymouth \
 poppler-data \
 poppler-utils \
@@ -167,9 +176,11 @@ strace \
 switcheroo-control \
 system-config-printer-udev \
 tcpdump \
+time \
 ubuntu-advantage-tools \
 ubuntu-docs \
 ubuntu-report \
+ubuntu-settings \
 ufw \
 unattended-upgrades \
 update-inetd \
@@ -180,6 +191,7 @@ upx-ucl \
 usb-modeswitch \
 usbmuxd \
 usbutils \
+uuid-runtime \
 vim-tiny \
 wamerican \
 wbritish \
@@ -230,7 +242,7 @@ sudo sed -i 's/^MODULES=most/MODULES=dep/' /etc/initramfs-tools/initramfs.conf
 sudo mkinitramfs -c xz -o /boot/initrd.img-*
 
 # Remove extra Linux packages
-sudo apt purge -y linux-firmware linux-headers-generic "^linux-modules-extra.*" "^linux-header.*" linux-libc-dev
+sudo apt purge -y busybox-initramfs linux-firmware linux-headers-generic "^linux-modules-extra.*" "^linux-header.*" linux-libc-dev
 
 # Upgrade the system
 sudo apt -y upgrade
