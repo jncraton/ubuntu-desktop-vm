@@ -229,6 +229,9 @@ echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
 sudo sed -i 's/^MODULES=most/MODULES=dep/' /etc/initramfs-tools/initramfs.conf
 sudo mkinitramfs -c xz -o /boot/initrd.img-*
 
+# Remove extra Linux packages
+sudo apt purge -y linux-firmware linux-headers-generic "^linux-module-extra.*" "^linux-header.*" linux-libc-dev
+
 # Upgrade the system
 sudo apt -y upgrade
 
