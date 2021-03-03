@@ -213,7 +213,7 @@ sudo rm -f /boot/*5*
 
 # Add just make and gcc
 # Add base kernel after removing HWE kernel
-sudo apt -y install linux-image-5.4.0-66-generic linux-modules-extra-5.4.0-66-generic make gcc
+sudo apt -y install linux-image-5.4.0-66-generic linux-modules-extra-5.4.0-66-generic make gcc libc6-dev
 
 # Add basic networking
 sudo apt -y install ifupdown
