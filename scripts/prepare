@@ -1,249 +1,361 @@
 #!/bin/bash
 
 set -eu -o pipefail
+shopt -s extglob
 
-# Update the system
-sudo apt -y update
+barebones='false'
+trim_only='false'
 
-# Allow removal of running kernel
-sudo rm -f /usr/bin/linux-check-removal
-sudo ln -s /usr/bin/true /usr/bin/linux-check-removal
+print_usage() {
+  printf "Usage: ..."
+}
 
-# Remove kernel packages
-sudo apt -y --purge remove linux-image-generic-hwe-20.04 "^linux-.*5\..*"
+while getopts 'bt' flag; do
+  case "${flag}" in
+    b) barebones='true' ;;
+    t) trim_only='true' ;;
+    *) print_usage
+       exit 1 ;;
+  esac
+done
 
-# Absolutely remove all kernels
-sudo rm -f /boot/*5*
+if [ "$trim_only" = "false" ]; then
+  # Update the system
+  sudo apt -y update
 
-# Install new packages (xclip is used by micro)
-sudo apt install -y python3-pip git xclip upx-ucl initramfs-tools virtualbox-guest-utils lxrandr linux-image-5.4.0-66-generic linux-modules-extra-5.4.0-66-generic ifupdown
+  # Allow removal of running kernel
+  sudo rm -f /usr/bin/linux-check-removal
+  sudo ln -s /usr/bin/true /usr/bin/linux-check-removal
 
-# Install micro from Github
-sudo wget https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-linux64-static.tar.gz
-sudo tar -xvf micro-*.tar.gz
-sudo rm micro-*.tar.gz
-sudo mv micro-*/micro /usr/bin
+  # Remove kernel packages
+  sudo apt -y --purge remove linux-image-generic-hwe-20.04 "^linux-.*5\..*"
 
-# Compress larger bins
-sudo upx -9 /usr/bin/micro
+  # Absolutely remove all kernels
+  sudo rm -f /boot/*5*
 
-# Show boot messages instead of splash screen
-echo 'GRUB_CMDLINE_LINUX_DEFAULT=""' | sudo tee -a /etc/default/grub
+  # Install new packages (xclip is used by micro)
+  sudo apt install -y python3-pip git xclip upx-ucl initramfs-tools virtualbox-guest-utils lxrandr linux-image-5.4.0-66-generic linux-modules-extra-5.4.0-66-generic ifupdown
 
-# Add basic networking
-echo allow-hotplug eth0 | sudo tee /etc/network/interfaces
-echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
-# Use old standard names for interfaces (e.g eth0)
-echo 'GRUB_CMDLINE_LINUX=" net.ifnames=0 biosdevname=0"' | sudo tee -a /etc/default/grub
-sudo update-grub
+  # Install micro from Github
+  sudo wget https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-linux64-static.tar.gz
+  sudo tar -xvf micro-*.tar.gz
+  sudo rm micro-*.tar.gz
+  sudo mv micro-*/micro /usr/bin
 
-# Build a slim initramfs
-sudo sed -i 's/^MODULES=most/MODULES=dep/' /etc/initramfs-tools/initramfs.conf
-sudo mkinitramfs -c xz -o /boot/initrd.img-*
+  # Compress larger bins
+  sudo upx -9 /usr/bin/micro
 
-# Remove extra packages
-sudo apt -y --purge remove \
-"^alsa.*" \
-anacron \
-"^avahi.*" \
-acl \
-acpid \
-alsa-utils \
-apparmor \
-apport \
-appstream \
-app-install-data-partner \
-apt-utils \
-aspell \
-"^busybox.*" \
-bc \
-bluez \
-bolt \
-brltty \
-build-essential \
-console-setup \
-cron \
-"^cups.*" \
-dosfstools \
-ed \
-eject \
-enchant-2 \
-eog \
-evince \
-file \
-"^fonts-lohit-.*" \
-"^fonts-noto.*" \
-"^fonts-samyak.*" \
-"^fonts-smc.*" \
-"^fonts-tlwg-.*" \
-fonts-freefont-ttf \
-fonts-guru \
-fonts-guru-extra \
-fonts-kacst \
-fonts-kacst-one \
-fonts-khmeros-core \
-fonts-lao \
-fonts-liberation2 \
-fonts-lklug-sinhala \
-fonts-lohit-guru \
-fonts-nakula \
-fonts-nanum \
-fonts-navilu \
-fonts-noto-cjk \
-fonts-opensymbol \
-fonts-orya \
-fonts-pagul \
-fonts-sarai \
-fonts-sil-abyssinica \
-fonts-sil-padauk \
-fonts-takao-pgothic \
-fonts-taml \
-fonts-telu \
-fonts-tibetan-machine \
-fonts-urw-base35 \
-foomatic-db-compressed-ppds \
-fprintd \
-fuse \
-gamemode \
-gdb \
-gedit \
-genisoimage \
-ghostscript \
-gnome-accessibility-themes \
-gnome-bluetooth \
-gnome-calculator \
-gnome-characters \
-gnome-disk-utility \
-gnome-font-viewer \
-gnome-getting-started-docs \
-gnome-initial-setup \
-gnome-keyring-pkcs11 \
-gnome-logs \
-gnome-menus \
-gnome-online-accounts \
-gnome-power-manager \
-gnome-session-canberra \
-gnome-shell-extension-appindicator \
-gnome-startup-applications \
-gnome-system-monitor \
-gnome-themes-extra \
-gnome-themes-extra-data \
-gpg \
-gpg-agent \
-dirmngr \
-gstreamer1.0-alsa \
-gstreamer1.0-gl \
-gstreamer1.0-pulseaudio \
-gstreamer1.0-tools \
-gstreamer1.0-plugins-good \
-hdparm \
-humanity-icon-theme \
-"^ibus.*" \
-im-config \
-iio-sensor-proxy \
-info \
-initramfs-tools \
-install-info \
-iptables \
-iputils-tracepath \
-irqbalance \
-kerneloops \
-language-selector-common \
-language-selector-gnome \
-libllvm9 \
-libgnome-menu-3-0 \
-libproxy1-plugin-networkmanager \
-linux-sound-base \
-linux-firmware \
-"^linux-modules-extra.*" \
-"^linux-header.*" \
-linux-libc-dev \
-locales \
-logrotate \
-lshw \
-ltrace \
-memtest86+ \
-micro \
-mobile-broadband-provider-info \
-modemmanager \
-mousetweaks \
-mtr-tiny \
-nautilus-sendto \
-netbase \
-netplan.io \
-networkd-dispatcher \
-network-manager-config-connectivity-ubuntu \
-network-manager-gnome \
-network-manager \
-ntfs-3g \
-openprinting-ppds \
-openvpn \
-os-prober \
-"^printer-driver.*" \
-packagekit \
-pcmciautils \
-pkg-config \
-plymouth \
-poppler-data \
-poppler-utils \
-popularity-contest \
-powermgmt-base \
-ppp \
-psmisc \
-publicsuffix \
-pulseaudio \
-python3-cairo \
-rfkill \
-rsync \
-rsyslog \
-rygel \
-snapd \
-speech-dispatcher \
-squashfs-tools \
-strace \
-switcheroo-control \
-system-config-printer-udev \
-tcpdump \
-time \
-ubuntu-advantage-tools \
-ubuntu-docs \
-ubuntu-report \
-ufw \
-unattended-upgrades \
-update-inetd \
-update-manager \
-update-manager-core \
-update-notifier \
-upx-ucl \
-usb-modeswitch \
-usbmuxd \
-usbutils \
-uuid-runtime \
-vim-tiny \
-wamerican \
-wbritish \
-whiptail \
-wireless-tools \
-whoopsie \
-wpasupplicant \
-xcursor-themes \
-xdg-user-dirs \
-xdg-utils \
-xfonts-encodings \
-xorg-docs-core \
-xserver-xephyr \
-xserver-xorg-input-wacom \
-xserver-xorg-legacy \
-xserver-xorg-video-all \
-xul-ext-ubufox \
-yaru-theme-icon \
-yaru-theme-sound \
-yelp
+  # Show boot messages instead of splash screen
+  echo 'GRUB_CMDLINE_LINUX_DEFAULT=""' | sudo tee -a /etc/default/grub
 
-# Add just make and gcc
-sudo apt -y install gcc make libc6-dev
+  # Add basic networking
+  echo allow-hotplug eth0 | sudo tee /etc/network/interfaces
+  echo iface eth0 inet dhcp | sudo tee -a /etc/network/interfaces
+  # Use old standard names for interfaces (e.g eth0)
+  echo 'GRUB_CMDLINE_LINUX=" net.ifnames=0 biosdevname=0"' | sudo tee -a /etc/default/grub
+  sudo update-grub
 
-# Upgrade the system
-sudo apt -y upgrade
+  # Build a slim initramfs
+  sudo sed -i 's/^MODULES=most/MODULES=dep/' /etc/initramfs-tools/initramfs.conf
+  sudo mkinitramfs -c xz -o /boot/initrd.img-*
 
-./trim-system
+  # Remove extra packages
+  sudo apt -y --purge remove \
+  "^alsa.*" \
+  anacron \
+  "^avahi.*" \
+  acl \
+  acpid \
+  alsa-utils \
+  apparmor \
+  apport \
+  appstream \
+  app-install-data-partner \
+  apt-utils \
+  aspell \
+  "^busybox.*" \
+  bc \
+  bluez \
+  bolt \
+  brltty \
+  build-essential \
+  console-setup \
+  cron \
+  "^cups.*" \
+  dosfstools \
+  ed \
+  eject \
+  enchant-2 \
+  eog \
+  evince \
+  file \
+  "^fonts-lohit-.*" \
+  "^fonts-noto.*" \
+  "^fonts-samyak.*" \
+  "^fonts-smc.*" \
+  "^fonts-tlwg-.*" \
+  fonts-freefont-ttf \
+  fonts-guru \
+  fonts-guru-extra \
+  fonts-kacst \
+  fonts-kacst-one \
+  fonts-khmeros-core \
+  fonts-lao \
+  fonts-liberation2 \
+  fonts-lklug-sinhala \
+  fonts-lohit-guru \
+  fonts-nakula \
+  fonts-nanum \
+  fonts-navilu \
+  fonts-noto-cjk \
+  fonts-opensymbol \
+  fonts-orya \
+  fonts-pagul \
+  fonts-sarai \
+  fonts-sil-abyssinica \
+  fonts-sil-padauk \
+  fonts-takao-pgothic \
+  fonts-taml \
+  fonts-telu \
+  fonts-tibetan-machine \
+  fonts-urw-base35 \
+  foomatic-db-compressed-ppds \
+  fprintd \
+  fuse \
+  gamemode \
+  gdb \
+  gedit \
+  genisoimage \
+  ghostscript \
+  gnome-accessibility-themes \
+  gnome-bluetooth \
+  gnome-calculator \
+  gnome-characters \
+  gnome-disk-utility \
+  gnome-font-viewer \
+  gnome-getting-started-docs \
+  gnome-initial-setup \
+  gnome-keyring-pkcs11 \
+  gnome-logs \
+  gnome-menus \
+  gnome-online-accounts \
+  gnome-power-manager \
+  gnome-session-canberra \
+  gnome-shell-extension-appindicator \
+  gnome-startup-applications \
+  gnome-system-monitor \
+  gnome-themes-extra \
+  gnome-themes-extra-data \
+  gpg \
+  gpg-agent \
+  dirmngr \
+  gstreamer1.0-alsa \
+  gstreamer1.0-gl \
+  gstreamer1.0-pulseaudio \
+  gstreamer1.0-tools \
+  gstreamer1.0-plugins-good \
+  hdparm \
+  humanity-icon-theme \
+  "^ibus.*" \
+  im-config \
+  iio-sensor-proxy \
+  info \
+  initramfs-tools \
+  install-info \
+  iptables \
+  iputils-tracepath \
+  irqbalance \
+  kerneloops \
+  language-selector-common \
+  language-selector-gnome \
+  libllvm9 \
+  libgnome-menu-3-0 \
+  libproxy1-plugin-networkmanager \
+  linux-sound-base \
+  linux-firmware \
+  "^linux-modules-extra.*" \
+  "^linux-header.*" \
+  linux-libc-dev \
+  locales \
+  logrotate \
+  lshw \
+  ltrace \
+  memtest86+ \
+  micro \
+  mobile-broadband-provider-info \
+  modemmanager \
+  mousetweaks \
+  mtr-tiny \
+  nautilus-sendto \
+  netbase \
+  netplan.io \
+  networkd-dispatcher \
+  network-manager-config-connectivity-ubuntu \
+  network-manager-gnome \
+  network-manager \
+  ntfs-3g \
+  openprinting-ppds \
+  openvpn \
+  os-prober \
+  "^printer-driver.*" \
+  packagekit \
+  pcmciautils \
+  pkg-config \
+  plymouth \
+  poppler-data \
+  poppler-utils \
+  popularity-contest \
+  powermgmt-base \
+  ppp \
+  psmisc \
+  publicsuffix \
+  pulseaudio \
+  python3-cairo \
+  rfkill \
+  rsync \
+  rsyslog \
+  rygel \
+  snapd \
+  speech-dispatcher \
+  squashfs-tools \
+  strace \
+  switcheroo-control \
+  system-config-printer-udev \
+  tcpdump \
+  time \
+  ubuntu-advantage-tools \
+  ubuntu-docs \
+  ubuntu-report \
+  ufw \
+  unattended-upgrades \
+  update-inetd \
+  update-manager \
+  update-manager-core \
+  update-notifier \
+  upx-ucl \
+  usb-modeswitch \
+  usbmuxd \
+  usbutils \
+  uuid-runtime \
+  vim-tiny \
+  wamerican \
+  wbritish \
+  whiptail \
+  wireless-tools \
+  whoopsie \
+  wpasupplicant \
+  xcursor-themes \
+  xdg-user-dirs \
+  xdg-utils \
+  xfonts-encodings \
+  xorg-docs-core \
+  xserver-xephyr \
+  xserver-xorg-input-wacom \
+  xserver-xorg-legacy \
+  xserver-xorg-video-all \
+  xul-ext-ubufox \
+  yaru-theme-icon \
+  yaru-theme-sound \
+  yelp
+
+  # Add just make and gcc
+  sudo apt -y install gcc make libc6-dev
+
+  # Upgrade the system
+  sudo apt -y upgrade
+fi
+
+# Remove virtually all userspace GUI apps
+if [ "$barebones" = "true" ]; then
+  sudo apt -y purge firefox nautilus file-roller gnome-screenshot python3-pip make gcc git perl
+  sudo apt -y --purge autoremove
+fi
+
+# Trim system and temp files for minimal image #
+################################################
+
+# Remove dependencies
+sudo apt -y --purge autoremove
+
+# Remove swapfile
+sudo swapoff -a
+sudo rm -f /swapfile
+sudo sed -i 's/^\/swapfile/\#\/swapfile/' /etc/fstab
+
+# Remove temp files
+sudo apt clean
+rm -rf /home/user/{.[!.],}*
+sudo rm -rf /root/{.[!.],}*
+sudo rm -rf /tmp/{.[!.],}*
+sudo rm -rf /var/log/*
+sudo rm -rf /var/backups/*
+sudo rm -rf /var/cache/*
+sudo rm -rf /var/lib/apt/lists
+sudo rm -rf /var/lib/dpkg/*-old
+
+# Remove backgrounds
+sudo rm -rf /usr/share/backgrounds/*
+
+# Remove locales
+sudo rm -rf /usr/share/locale/!(en)
+
+# Recreate important paths that may have been deleted
+mkdir /home/user/Desktop
+
+sudo sync -f
+
+echo Restart gnome-shell session...
+kill -3 $(pidof gnome-shell)
+sleep 1
+kill -3 $(pidof gnome-shell)
+sleep 10
+
+# Adjust Gnome settings
+# Disable screen blanking
+gsettings set org.gnome.desktop.session idle-delay 0
+# Disable screen locking after suspend
+gsettings set org.gnome.desktop.lockdown disable-lock-screen true
+# Disable screen locking from screensaver
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+# Use gradient background color
+gsettings set org.gnome.desktop.background primary-color '#992233'
+gsettings set org.gnome.desktop.background secondary-color '#550055'
+gsettings set org.gnome.desktop.background color-shading-type vertical
+gsettings set org.gnome.desktop.background picture-options 'none'
+gsettings set org.gnome.desktop.background picture-uri ''
+# Disable animations
+gsettings set org.gnome.desktop.interface enable-animations false
+
+# Add terminal to favorites
+dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'lxrandr.desktop']"
+
+echo "Gnome settings updated"
+
+# Set default editor
+echo export EDITOR=micro > /home/user/.bashrc
+
+# Add gnome extension
+mkdir -p /home/user/.local/share/gnome-shell/extensions/vm-tweaks
+cd /home/user/.local/share/gnome-shell/extensions/vm-tweaks && git clone https://github.com/jncraton/gnome-vm-tweaks && mv gnome-vm-tweaks/extension.js . && mv gnome-vm-tweaks/metadata.json . && rm -rf gnome-vm-tweaks
+
+# Add `user` to vboxsf group to allow writing to virtualbox shared folders
+sudo adduser user vboxsf
+
+gnome-extensions enable vm-tweaks
+
+sudo sync -f
+sudo fstrim -A
+
+echo Waiting 15 seconds before scrubbing free space...
+sleep 15
+
+# Zero free space
+echo Scrubbing free space...
+sudo dd bs=4M if=/dev/zero of=/var/tmp/empty || sudo rm -f /var/tmp/empty
+sudo sync -f
+
+echo "Powering off in 15 seconds..."
+sleep 15
+
+# Shut down
+sudo shutdown now
