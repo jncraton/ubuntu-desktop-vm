@@ -240,7 +240,6 @@ if [ "$trim_only" = "false" ]; then
   usbutils \
   uuid-runtime \
   vim-tiny \
-  wamerican \
   wbritish \
   whiptail \
   wireless-tools \
