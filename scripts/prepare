@@ -3,6 +3,8 @@
 set -eu -o pipefail
 shopt -s extglob
 
+kernel='5.4.0-67-generic'
+
 barebones='false'
 trim_only='false'
 
@@ -34,7 +36,7 @@ if [ "$trim_only" = "false" ]; then
   sudo rm -f /boot/*5*
 
   # Install new packages (xclip is used by micro)
-  sudo apt install -y python3-pip git xclip upx-ucl initramfs-tools virtualbox-guest-utils lxrandr linux-image-5.4.0-66-generic linux-modules-extra-5.4.0-66-generic ifupdown
+  sudo apt install -y python3-pip git xclip upx-ucl initramfs-tools virtualbox-guest-utils lxrandr linux-image-$kernel linux-modules-extra-$kernel ifupdown
 
   # Install micro from Github
   sudo wget https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-linux64-static.tar.gz
