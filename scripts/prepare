@@ -340,14 +340,8 @@ echo "Gnome settings updated"
 # Set default editor
 echo export EDITOR=micro > /home/user/.bashrc
 
-# Add gnome extension
-mkdir -p /home/user/.local/share/gnome-shell/extensions/vm-tweaks
-cd /home/user/.local/share/gnome-shell/extensions/vm-tweaks && git clone https://github.com/jncraton/gnome-vm-tweaks && mv gnome-vm-tweaks/extension.js . && mv gnome-vm-tweaks/metadata.json . && rm -rf gnome-vm-tweaks
-
 # Add `user` to vboxsf group to allow writing to virtualbox shared folders
 sudo adduser user vboxsf
-
-gnome-extensions enable vm-tweaks
 
 sudo sync -f
 sudo fstrim -A
