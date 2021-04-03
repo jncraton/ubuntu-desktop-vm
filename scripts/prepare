@@ -3,7 +3,7 @@
 set -eu -o pipefail
 shopt -s extglob
 
-kernel='5.4.0-67-generic'
+kernel=$(uname -r)
 
 barebones='false'
 trim_only='false'
