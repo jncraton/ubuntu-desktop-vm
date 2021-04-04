@@ -12,6 +12,7 @@ This image is a fresh install of Ubuntu Desktop 20.04. It is configured with the
 - VBoxSVGA display adapter
 - "Minimal" install
 - Single partition without swap for a smaller final image
+- Username is `user`, password is `password`, computer name is `computer`
 
 The following process was completed after installation to minimze the size of the final image:
 
