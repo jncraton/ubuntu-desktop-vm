@@ -1,7 +1,7 @@
 Ubuntu Desktop VM Appliance
 ===========================
 
-This is a minimal VM appliance running Ubuntu Desktop with `git`, `python3`, `gcc`, and the [`micro`](https://github.com/zyedidia/micro) text editor preinstalled.
+This is a minimal VM appliance running Ubuntu Desktop with `git`, `python3`, `gcc`, `make`, and the [`micro`](https://github.com/zyedidia/micro) text editor preinstalled.
 
 ![Ubuntu Desktop](media/screenshot.png)
 
