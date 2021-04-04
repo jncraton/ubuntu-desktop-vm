@@ -332,8 +332,10 @@ do
   sleep 1
 done
 
-# Add terminal to favorites
-dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'lxrandr.desktop']"
+# Adjust favorites
+if [ "$barebones" = "false" ]; then
+  dconf write /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'lxrandr.desktop']"
+fi
 
 echo "Gnome settings updated"
 
