@@ -8,8 +8,8 @@ This is a minimal VM appliance running Ubuntu Desktop with Git, Python 3, C/C++ 
 Installation
 ------------
 
-- Download the [VM appliance](https://github.com/jncraton/ubuntu-desktop-vm/releases/download/v1.9/ubuntu-desktop.ova) file from the [releases](https://github.com/jncraton/ubuntu-desktop-vm/releases/latest)
-- Run it in your VM host of choice, such as [VirtualBox](https://www.virtualbox.org/) (Windows, MacOS, Linux) or [Virt-manager](https://virt-manager.org/) (Linux).
+- Ensure that you have appropriate virtualization software such as [VirtualBox](https://www.virtualbox.org/) (Windows, MacOS, Linux) or [Virt-manager](https://virt-manager.org/) (Linux) installed.
+- Download the [VM appliance](https://github.com/jncraton/ubuntu-desktop-vm/releases/download/v1.9/ubuntu-desktop.ova) and [import and run](https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html) it with your virtualization software.
 
 Getting Started
 ---------------
