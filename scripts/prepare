@@ -269,7 +269,6 @@ fi
 # Remove virtually all userspace GUI apps
 if [ "$barebones" = "true" ]; then
   sudo apt -y purge firefox nautilus file-roller gnome-screenshot python3-pip make gcc git perl
-  sudo apt -y --purge autoremove
 fi
 
 # Trim system and temp files for minimal image #
