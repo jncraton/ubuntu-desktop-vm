@@ -7,15 +7,19 @@ kernel=$(uname -r)
 
 barebones='false'
 trim_only='false'
+extra_system_packages=''
+extra_python_packages=''
 
 print_usage() {
   printf "Usage: ..."
 }
 
-while getopts 'bt' flag; do
+while getopts 'bts:p:' flag; do
   case "${flag}" in
     b) barebones='true' ;;
     t) trim_only='true' ;;
+    s) extra_system_packages=$OPTARG ;;
+    p) extra_python_packages=$OPTARG ;;
     *) print_usage
        exit 1 ;;
   esac
@@ -269,6 +273,14 @@ fi
 # Remove virtually all userspace GUI apps
 if [ "$barebones" = "true" ]; then
   sudo apt -y purge firefox nautilus file-roller gnome-screenshot python3-pip make gcc git perl
+fi
+
+if [ -n "$extra_system_packages" ]; then
+  sudo apt install $extra_system_packages
+fi
+
+if [ -n "$extra_python_packages" ]; then
+  pip3 install $extra_system_packages
 fi
 
 # Trim system and temp files for minimal image #
