@@ -346,6 +346,8 @@ chmod +x ~/.config/autostart/org.gnome.Terminal.desktop
 
 # Set default editor
 echo export EDITOR=micro > /home/user/.bashrc
+# Include ~/.local/bin in path
+echo export PATH=\$PATH:\~/.local/bin >> /home/user/.bashrc
 
 # Add `user` to vboxsf group to allow writing to virtualbox shared folders
 sudo adduser user vboxsf
