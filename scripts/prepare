@@ -339,6 +339,11 @@ fi
 
 echo "Gnome settings updated"
 
+# Autostart GNOME Terminal
+mkdir -p ~/.config/autostart
+cp /usr/share/application/org.gnome.Terminal.desktop ~/.config/autostart
+chmod +x ~/.config/autostart/org.gnome.Terminal.desktop
+
 # Set default editor
 echo export EDITOR=micro > /home/user/.bashrc
 
