@@ -11,8 +11,9 @@ This image is a fresh install of Ubuntu Desktop 20.04. It is configured with the
 - 10G dynamically allocated image
 - VBoxSVGA display adapter
 - "Minimal" install
+- Skip updates during install
 - Single partition without swap for a smaller final image
-- Username is `user`, password is `password`, computer name is `computer`
+- Username is `user`, password is `password`, computer name is `vm`, automatic login
 
 The following process was completed after installation to minimze the size of the final image:
 
@@ -22,7 +23,7 @@ The following process was completed after installation to minimze the size of th
 sudo apt update && sudo apt upgrade -y && sudo shutdown -r now
 ```
 
-- After the reboot, open a terminal and enter the following commands:
+- After the reboot, switch to text mode and enter the following commands:
 
 ```
 sudo apt install git
@@ -30,7 +31,7 @@ git clone https://github.com/jncraton/ubuntu-desktop-vm
 ubuntu-desktop-vm/script/prepare
 ```
 
-- Once the script completes, the system will power off. The new system is not ready for use. Export the appliance.
+- Once the script completes, the system will power off. The new system is now ready for use. Export the appliance.
 
 Details
 -------
