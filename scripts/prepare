@@ -40,7 +40,7 @@ if [ "$trim_only" = "false" ]; then
   sudo rm -f /boot/*5*
 
   # Install new packages (xclip is used by micro)
-  sudo apt install -y python3-pip git xclip upx-ucl initramfs-tools virtualbox-guest-utils lxrandr linux-image-$kernel linux-modules-extra-$kernel ifupdown
+  sudo apt install -y python3-pip git xclip upx-ucl initramfs-tools lxrandr linux-image-$kernel linux-modules-extra-$kernel ifupdown
 
   # Install micro from Github
   sudo wget https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-linux64-static.tar.gz
@@ -263,8 +263,8 @@ if [ "$trim_only" = "false" ]; then
   yaru-theme-sound \
   yelp
 
-  # Add just make and gcc
-  sudo apt -y install gcc make libc6-dev
+  # Add just make, gcc, and vbox guest additions
+  sudo apt -y install gcc make libc6-dev virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
 
   # Upgrade the system
   sudo apt -y upgrade
